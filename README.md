@@ -1,2 +1,2 @@
 # RealTimeChartWeb
-Real time chart web when changed data in database
+Real time chart web with websocket when changed data in database

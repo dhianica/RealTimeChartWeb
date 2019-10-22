@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Usage Client</title>
+        
+        <script src="Chart.js"></script>
+
+        <script src="eneter-messaging-7.0.0.js"></script>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body onunload="closeConnection();">
+        <div>
+            <button type="button" onclick="openConnection();">1. Open Connection</button>
+            <button type="button" onclick="subscribe();">2. Subscribe</button>
+            <button type="button" onclick="unsubscribe();">3. Unsubscribe</button>
+            <button type="button" onclick="closeConnection();">4. Close Connection</button>
+        </div>
+        <div>
+            <canvas id="canvas" height="300" width="800"></canvas>
+        </div>
+        
+        <script>
+            // Initialize chart.
+            var myChartConfig = {
+                        animation : false,
+                        scaleOverlay : true,
+                        scaleOverride : true,
+                    scaleSteps : 10,
+                        scaleStepWidth : 10,
+                        scaleStartValue : 0
+            };
+            var myLineChartData = {
+            labels : ["", "", "", "", "", "", "", "", "", ""],
+            datasets : [
+                {
+                    fillColor : "rgba(220,220,220,0.5)",
+                    strokeColor : "rgba(220,220,220,1)",
+                    pointColor : "rgba(220,220,220,1)",
+                    pointStrokeColor : "#fff",
+                    data : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                }
+            ]
+            
+        };
+            var myChart = new Chart(document.getElementById("canvas").getContext("2d"));
+            
+            // Create the duplex output channel.
+            var myOutputChannel =
+              new WebSocketDuplexOutputChannel("ws://127.0.0.1:8000/RealTimeChartWeb/", null);
+
+            // Create BrokerClient
+            var myBrokerClient = new DuplexBrokerClient();
+            
+            // Subscribe to notifications.
+            myBrokerClient.onBrokerMessageReceived = onBrokerMessageReceived;
+            
+            function openConnection() {
+                // Attach output channel and be able to send messages and receive responses.
+                myBrokerClient.attachDuplexOutputChannel(myOutputChannel);
+            };
+
+            function closeConnection() {
+                // Detach output channel and stop listening to responses.
+                myBrokerClient.detachDuplexOutputChannel();
+            };
+
+            function subscribe() {
+                myBrokerClient.subscribe("MyUpdateData");
+            };
+
+            function unsubscribe() {
+                myBrokerClient.unsubscribe("MyUpdateData");
+            };
+            
+            function onBrokerMessageReceived(brokerMessageReceivedEventArgs) {
+                // If the notified message is the CPU status update.
+                if (brokerMessageReceivedEventArgs.MessageTypeId === "MyUpdateData")
+                {
+                    // Deserialize notified message content.
+                    var aValue = JSON.parse(brokerMessageReceivedEventArgs.Message);
+                    
+                    // Update data and draw the chart.
+                    myLineChartData.datasets[0].data.shift();
+                    myLineChartData.datasets[0].data.push(aValue.values);
+                    myChart.Line(myLineChartData, myChartConfig);
+                }
+            };
+        </script>
+    </body>
+</html><font color="#111111" face="Segoe UI, Arial, sans-serif"><span style="font-size: 14px; white-space: normal;">
+</span></font>

@@ -1,0 +1,10 @@
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\bin\Debug\RealTimeChartWeb.exe.config
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\bin\Debug\RealTimeChartWeb.exe
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\bin\Debug\RealTimeChartWeb.pdb
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\bin\Debug\Eneter.Messaging.Framework.dll
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\bin\Debug\Eneter.Messaging.Framework.pdb
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\bin\Debug\Eneter.Messaging.Framework.xml
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\obj\Debug\RealTimeChartWeb.csprojAssemblyReference.cache
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\obj\Debug\RealTimeChartWeb.csproj.CopyComplete
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\obj\Debug\RealTimeChartWeb.exe
+C:\Users\muchilham\Documents\Visual Studio 2019\Projects\RealTimeChartWeb\obj\Debug\RealTimeChartWeb.pdb
